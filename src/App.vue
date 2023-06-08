@@ -12,7 +12,8 @@ html, body {
   margin: 0;
 }
 #app {
-  margin: 0 auto;
-  width: 800px;
+  height: 100%;
+  width: 100%;
+  position: relative;
 }
 </style>

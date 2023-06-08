@@ -63,7 +63,11 @@ const clickHandle = (instance) => {
 
 <style scoped>
 .container {
-  width: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -100%);
+  width: 70%;
   display: flex;
   align-items: center;
 }
