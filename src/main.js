@@ -8,6 +8,8 @@ import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
 import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 
+import VueComponentExpand from 'vue-component-expand-demo'
+
 import Directive from '@/directive' // 自定义指令
 
 const app = createApp(App)
@@ -21,5 +23,6 @@ for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
 }
 
 app.use(Directive)
+app.use(VueComponentExpand)
 
 app.mount('#app')

@@ -7,24 +7,26 @@
 </template>
 
 <script>
-import { ref, onMounted, getCurrentInstance }  from 'vue'
-export default {
-  setup(props, context) {
+import { defineComponent, ref, onMounted, getCurrentInstance }  from 'vue'
+export default defineComponent({
+  setup(_props, context) {
+
     const instance = getCurrentInstance()
 
     const refInput = ref()
     
     onMounted(() => {
-      const entries = Object.entries(refInput.value.$.exposed)
+      let target = refInput.value.$.exposed || refInput.value
+      const entries = Object.entries(target)
       for (const [key, value] of entries) {
         instance.exposed[key] = value
       }
     })
-
+    
     context.expose()
     return {
       refInput
     }
   }
-}
+})
 </script>

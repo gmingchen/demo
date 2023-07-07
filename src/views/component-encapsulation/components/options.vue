@@ -13,10 +13,13 @@ export default {
     return {}
   },
   mounted() {
-    const entries = Object.entries(this.$refs.refInput)
+    let target = this.$refs.refInput.$.exposed || this.$refs.refInput
+    const entries = Object.entries(target)
     for(const [key, value] of entries) {
       this.$.exposed[key] = value
     }
+  },
+  methods: {
   }
 }
 </script>

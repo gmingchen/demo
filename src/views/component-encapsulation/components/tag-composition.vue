@@ -14,7 +14,8 @@ const instance = getCurrentInstance()
 const refInput = ref()
 
 onMounted(() => {
-  const entries = Object.entries(refInput.value.$.exposed)
+  let target = refInput.value.$.exposed || refInput.value
+  const entries = Object.entries(target)
   for (const [key, value] of entries) {
     instance.exposed[key] = value
   }
