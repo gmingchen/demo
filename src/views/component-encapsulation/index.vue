@@ -47,6 +47,11 @@
           <el-table-column type="selection"  />
           <el-table-column prop="date" label="Date"  />
           <el-table-column prop="name" label="Name"  />
+          <el-table-column prop="name" label="Name"  >
+            <template v-slot="{ row }">
+              {{  row.name + 1 }}
+            </template>
+          </el-table-column>
         </ExpandTable>
         <br><br>
         <el-button @click="tableClick()">设置选中行</el-button>
