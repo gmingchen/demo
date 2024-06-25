@@ -3,7 +3,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
-    { path: '/', redirect: { name: 'routeCache' } },
+    { path: '/', redirect: { name: 'websocket' } },
     {
       path: '/component-encapsulation',
       name: 'componentEncapsulation',
@@ -77,7 +77,12 @@ const router = createRouter({
           ]
         },
       ]
-    }
+    },
+    {
+      path: '/websocket',
+      name: 'websocket',
+      component: () => import('../views/websocket/simple.vue')
+    },
   ]
 })
 
