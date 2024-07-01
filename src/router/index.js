@@ -3,7 +3,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
-    { path: '/', redirect: { name: 'websocket' } },
+    { path: '/', redirect: { name: 'webRtc' } },
     {
       path: '/component-encapsulation',
       name: 'componentEncapsulation',
@@ -82,6 +82,11 @@ const router = createRouter({
       path: '/websocket',
       name: 'websocket',
       component: () => import('../views/websocket/index.vue')
+    },
+    {
+      path: '/web-rtc',
+      name: 'webRtc',
+      component: () => import('../views/web-rtc/index.vue')
     },
   ]
 })
