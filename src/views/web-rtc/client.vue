@@ -1,5 +1,6 @@
 <template>
   <div class="client">
+    <div>{{ name }}</div>
     <video ref="refVideo"></video>
     <div>
       <el-button :disabled="!connection" @click="call">呼叫</el-button>
@@ -10,6 +11,13 @@
 <script setup>
 import { ref } from 'vue'
 const emits = defineEmits(['localDescription'])
+const props = defineProps({
+  name: {
+    type: String,
+    default: () => ''
+  }
+})
+
 const connection = ref(null)
 const channel = ref(null)
 const localDescription = ref(null)
@@ -49,13 +57,12 @@ const ondatachannel = ({ channel }) => {
 }
 // 远程对等端添加一个新的或更改现有轨道 监听处理器。 将获取到的数据在播放器中播放
 const ontrack = (event) => {
+  console.log(`【${ props.name }】ontrack`);
   refVideo.value.srcObject = event.streams[0];
   refVideo.value.play()
 }
 // 呼叫
 const call = async () => {
-  getUserMediaStream()
-
   const dataChannel = connection.value.createDataChannel('channel');
   channelHandle(dataChannel)
   const offer = await connection.value.createOffer()
@@ -63,8 +70,6 @@ const call = async () => {
 }
 // 接受呼叫
 const accept = async () => {
-  getUserMediaStream()
-
   connection.value.setRemoteDescription(remoteDescription.value)
   const answer = await connection.value.createAnswer()
   connection.value.setLocalDescription(answer);
@@ -74,6 +79,7 @@ const init = () => {
   connection.value = new RTCPeerConnection()
   connection.value.onicecandidate = onicecandidate
   connection.value.ondatachannel = ondatachannel
+  getUserMediaStream()
   connection.value.ontrack = ontrack
 }
 // 设置远程SDP
@@ -85,4 +91,8 @@ defineExpose({ init, remoteDescriptionHandler })
 </script>
 <style scoped>
 .client {}
+video {
+  height: 250px;
+  width: 300px;
+}
 </style>

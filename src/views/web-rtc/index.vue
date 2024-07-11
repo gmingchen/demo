@@ -1,14 +1,8 @@
 <template>
   <div class="container">
     <div class="client-wrap">
-      <div>
-        <div>Client A</div>
-        <Client ref="refClientA" @localDescription="aLocalDescriptionHandle"></Client>
-      </div>
-      <div>
-        <div>Client B</div>
-        <Client ref="refClientB" @localDescription="bLocalDescriptionHandle"></Client>
-      </div>
+      <Client ref="refClientA" name="Client A" @localDescription="aLocalDescriptionHandle"></Client>
+      <Client ref="refClientB" name="Client B" @localDescription="bLocalDescriptionHandle"></Client>
     </div>
     <el-button @click="init">初始化</el-button>
   </div>
